@@ -1,0 +1,26 @@
+{
+  "name": "socketio",
+  "version": "1.0.0",
+  "description": "Socket.IO Mastery:",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nehaumbre/SOCKETIO.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nehaumbre/SOCKETIO/issues"
+  },
+  "homepage": "https://github.com/nehaumbre/SOCKETIO#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14",
+    "socket.io": "^4.8.3"
+  }
+}
