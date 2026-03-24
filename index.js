@@ -13,9 +13,12 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 // console.log(__dirname, "index.html"); // this is only for understanding the path
 app.get('/', (req,res) =>  res.sendFile(join(__dirname, "index.html")))
 // 4. Define  a connection event handler
-io.on('connection', (socket)=>{
-    console.log("A user connected with id: ", socket.id);
+io.on('connection', (client)=>{
+    console.log("A user connected with id: ", client.id);
     // console.log(socket); // for your information only
+    client.on("disconnect", () => {
+        console.log("Disconnected from (client) 💔");
+    })
 })
 // 5. Start the server 
 const PORT = process.env.PORT || 3000
