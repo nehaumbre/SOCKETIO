@@ -1,28 +1,39 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Socket.io Demo</title>
-  </head>
 
-  <body>
-    <h1>Socket.io</h1>
-    <script src="/socket.io/socket.io.js"></script>
-    <script type="module">
-      const socket = io();
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Socket.io Demo</title>
+</head>
 
-      socket.on("connect", () => {
-        console.log("Connected to (client) 💛");
+<body>
+  <h1>Socket.io</h1>
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="module">
+    const socket = io();
 
-        //Disconnect after 5 seconds
-        setTimeout(()=>{
-            socket.disconnect();
-        },5000)
-      });
-      socket.on("disconnect", () => {
-        console.log("Disconnected from (client) ❌");
-      });
-    </script>
-  </body>
+    socket.on("connect", () => {
+      console.log("Connected to (client) 💛");
+      // //Disconnect after 5 seconds
+      // setTimeout(()=>{
+      //     socket.disconnect();
+      // },5000)
+    });
+
+    //get the emmited message from the server
+    socket.on("welcome", (message)=>{
+      console.log("Received message from server:", message);
+    })
+
+    //emit message to the server
+    socket.emit("messageFromClient", "Hello Server! 👋");
+
+
+    socket.on("disconnect", () =>
+      console.log("Disconnected from (client) ❌")
+    );
+  </script>
+</body>
+
 </html>

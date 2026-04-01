@@ -9,3 +9,5 @@ io.on is the "Welcome!" event. It happens once per person when they first arrive
 socket.on is the "How can I help you?" event. It handles the specific messages (like chat, moves in a game, or data updates) sent by that one person.
 
 Key Difference: io manages the entire crowd, while socket manages the individual.
+
+### Emitting Events - allows us to send data from one side(client or server) to other. 
