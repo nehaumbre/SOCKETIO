@@ -1,25 +1,21 @@
 import { useState, useEffect } from "react";
 import io from "socket.io-client";
 
-const socket = io("http://localhost:3000");
+const socket = io("http://localhost:5000");
 
 const App = () => {
-  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState("");
 
   useEffect(() => {
-    socket.on(
-      "message",
-      (message) => {
-        setMessage([...messages, message]);
+    socket.on("message", (msg) => {
+      setMessages((prevMessages) => [...prevMessages, msg]);
+    });
 
-        return () => {
-          socket.off("message");
-        };
-      },
-      [messages],
-    );
-  });
+    return () => {
+      socket.off("message");
+    };
+  }, []);
 
   const sendMessage = () => {
     if (messageInput.trim() !== "") {
@@ -42,8 +38,8 @@ const App = () => {
       {/* Render all the messages */}
 
       <section>
-        {message.map((message, index) => (
-          <div key={index}>{message}</div>
+        {messages.map((msg, index) => (
+          <div key={index}>{msg}</div>
         ))}
       </section>
     </div>
